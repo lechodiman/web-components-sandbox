@@ -9,6 +9,8 @@ class Tooltip extends HTMLElement {
 
     // Set up shadow DOM
     this.attachShadow({ mode: "open" });
+
+    // Set up template inside shadow root
     this.shadowRoot.innerHTML = `
       <style>
         div {
@@ -24,7 +26,7 @@ class Tooltip extends HTMLElement {
     `;
   }
 
-  // Method that gets executed after the element is attached to the DOM
+  // Method that gets executed after the element is attached to the DOM, so if you do DOM manipulations on the element itself, you do it here
   connectedCallback() {
     if (this.hasAttribute("text")) {
       this._tooltipText = this.getAttribute("text");
