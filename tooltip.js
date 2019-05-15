@@ -9,6 +9,10 @@ class Tooltip extends HTMLElement {
 
     // Set up shadow DOM
     this.attachShadow({ mode: "open" });
+
+    // template
+    const template = document.querySelector("#tooltip-template");
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
   // Method that gets executed after the element is attached to the DOM
@@ -17,10 +21,11 @@ class Tooltip extends HTMLElement {
       this._tooltipText = this.getAttribute("text");
     }
 
-    const tooltipIcon = document.createElement("span");
-    tooltipIcon.textContent = " (?)";
+    const tooltipIcon = this.shadowRoot.querySelector("span");
+
     tooltipIcon.addEventListener("mouseenter", this._showTooltip);
     tooltipIcon.addEventListener("mouseleave", this._hideTooltip);
+
     this.shadowRoot.appendChild(tooltipIcon);
   }
 
