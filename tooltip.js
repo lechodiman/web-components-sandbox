@@ -19,8 +19,14 @@ class Tooltip extends HTMLElement {
           position: absolute;
           z-index: 10;
         }
+
+        ::slotted(.highlight) {
+          background-color: red;
+          border-bottom: 1px solid red;
+        }
       </style>  
     
+      <!-- Slots project content from the DOM into the shadow DOM, it does not move the element but just projects it -->
       <slot>Some Default</slot>
       <span> (?)</span>
     `;
