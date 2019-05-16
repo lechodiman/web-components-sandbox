@@ -15,16 +15,20 @@ class Tooltip extends HTMLElement {
     this.shadowRoot.innerHTML = `
       <style>
         div {
-          font-weight: normal;
-          color: white;
-          position: absolute;
-          top: 2rem;
-          left: 0.75rem;
-          z-index: 10;
-          padding: 0.15rem;
+          background-color: orange;
           border-radius: 3px;
           box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.26);
-          background-color: orange;
+          color: white;
+          font-weight: normal;
+          left: 0.75rem;
+          padding: 0.15rem;
+          position: absolute;
+          top: 2rem;
+          z-index: 10;
+        }
+
+        :host {
+          position: relative;
         }
 
         :host(.important) {
@@ -42,10 +46,10 @@ class Tooltip extends HTMLElement {
 
         .icon {
           background: black;
+          border-radius: 50%;
           color: white;
           padding: 0.15rem 0.5rem;
           text-align: center;
-          border-radius: 50%;
         }
       </style>  
     
