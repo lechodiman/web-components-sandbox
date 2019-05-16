@@ -24,6 +24,10 @@ class Tooltip extends HTMLElement {
           background: #ccc;
         }
 
+        :host-context(p) {
+          font-weight: bold;
+        }
+
         ::slotted(.highlight) {
           border-bottom: 1px solid red;
         }
