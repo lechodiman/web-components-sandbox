@@ -15,7 +15,6 @@ class Tooltip extends HTMLElement {
       <style>
         div {
           font-weight: normal;
-          background-color: black;
           color: white;
           position: absolute;
           top: 2rem;
@@ -24,6 +23,7 @@ class Tooltip extends HTMLElement {
           padding: 0.15rem;
           border-radius: 3px;
           box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.26);
+          background-color: orange;
         }
 
         :host(.important) {
@@ -67,6 +67,20 @@ class Tooltip extends HTMLElement {
     tooltipIcon.addEventListener("mouseleave", this._hideTooltip);
 
     this.shadowRoot.appendChild(tooltipIcon);
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (oldValue == newValue) {
+      return;
+    }
+
+    if (name === "text") {
+      this._tooltipText = newValue;
+    }
+  }
+
+  static get observedAttributes() {
+    return ["text"];
   }
 
   _showTooltip() {
