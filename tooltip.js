@@ -2,8 +2,8 @@
 class Tooltip extends HTMLElement {
   constructor() {
     super();
-    this._tooltipContainer;
     this._tooltipIcon;
+    this._tooltipVisible = false;
     this._showTooltip = this._showTooltip.bind(this);
     this._hideTooltip = this._hideTooltip.bind(this);
     this._tooltipText = "Some dummy tooltip text";
@@ -88,14 +88,28 @@ class Tooltip extends HTMLElement {
     this._tooltipIcon.removeEventListener("mouseleave", this._hideTooltip);
   }
 
+  _render() {
+    let tooltipContainer = this.shadowRoot.querySelector("div");
+
+    if (this._tooltipVisible) {
+      tooltipContainer = document.createElement("div");
+      tooltipContainer.textContent = this._tooltipText;
+      this.shadowRoot.appendChild(tooltipContainer);
+    } else {
+      if (tooltipContainer) {
+        this.shadowRoot.removeChild(tooltipContainer);
+      }
+    }
+  }
+
   _showTooltip() {
-    this._tooltipContainer = document.createElement("div");
-    this._tooltipContainer.textContent = this._tooltipText;
-    this.shadowRoot.appendChild(this._tooltipContainer);
+    this._tooltipVisible = true;
+    this._render();
   }
 
   _hideTooltip() {
-    this.shadowRoot.removeChild(this._tooltipContainer);
+    this._tooltipVisible = false;
+    this._render();
   }
 }
 
