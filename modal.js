@@ -1,7 +1,7 @@
 class Modal extends HTMLElement {
   constructor() {
     super();
-
+    this.isOpen = false;
     this.attachShadow({ mode: "open" });
 
     this.shadowRoot.innerHTML = `
@@ -91,20 +91,23 @@ class Modal extends HTMLElement {
     `;
   }
 
-  // attributeChangedCallback(name, oldValue, newValue) {
-  //   if (name === "opened") {
-  //     if (this.hasAttribute("opened")) {
-  //       this.shadowRoot.querySelector("#backdrop").style.opacity = 1;
-  //       this.shadowRoot.querySelector("#backdrop").style.pointerEvents = "all";
-  //       this.shadowRoot.querySelector("#modal").style.opacity = 1;
-  //       this.shadowRoot.querySelector("#modal").style.pointerEvents = "all";
-  //     }
-  //   }
-  // }
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (this.hasAttribute("opened")) {
+      this.isOpen = true;
+    } else {
+      this.isOpen = false;
+    }
+  }
 
-  // static get observedAttributes() {
-  //   return ["opened"];
-  // }
+  static get observedAttributes() {
+    return ["opened"];
+  }
+
+  open() {
+    this.setAttribute("opened", "");
+    this.isOpen = true;
+    console.log(this.isOpen);
+  }
 }
 
 customElements.define("uc-modal", Modal);

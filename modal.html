@@ -39,7 +39,11 @@
     const modal = document.querySelector("uc-modal");
 
     confirmButton.addEventListener("click", () => {
-      modal.setAttribute("opened", "");
+      if (!modal.isOpen) {
+        modal.open();
+        console.log("opening...");
+      }
+      // modal.setAttribute("opened", "");
     });
   </script>
 </html>
