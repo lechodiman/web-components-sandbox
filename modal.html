@@ -10,18 +10,36 @@
     <style>
       * {
         box-sizing: border-box;
-        margin: 2rem;
         font-family: sans-serif;
+      }
+
+      body {
+        margin: 2rem;
       }
     </style>
   </head>
   <body>
-    <uc-modal></uc-modal>
+    <uc-modal>
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat vel
+        facilis vitae illum aperiam iste dolore blanditiis unde amet
+        reprehenderit.
+      </p>
+    </uc-modal>
 
     <p>
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro, sunt.
     </p>
 
-    <button>Lorem, ipsum dolor.</button>
+    <button>Show details</button>
   </body>
+
+  <script>
+    const confirmButton = document.querySelector("button");
+    const modal = document.querySelector("uc-modal");
+
+    confirmButton.addEventListener("click", () => {
+      modal.setAttribute("opened", "");
+    });
+  </script>
 </html>
