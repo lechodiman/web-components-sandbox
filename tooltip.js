@@ -20,15 +20,27 @@ class Tooltip extends HTMLElement {
           z-index: 10;
         }
 
+        :host {
+          background: #ccc;
+        }
+
         ::slotted(.highlight) {
-          background-color: red;
           border-bottom: 1px solid red;
+        }
+
+        .icon {
+          background: black;
+          color: white;
+          padding: 0.15rem 0.5rem;
+          text-align: center;
+          border-radius: 50%;
         }
       </style>  
     
       <!-- Slots project content from the DOM into the shadow DOM, it does not move the element but just projects it -->
+
       <slot>Some Default</slot>
-      <span> (?)</span>
+      <span class="icon">?</span>
     `;
   }
 
