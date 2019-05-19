@@ -127,12 +127,19 @@ class Modal extends HTMLElement {
     this.isOpen = false;
   }
 
-  _cancel() {
+  _cancel(event) {
     this.hide();
+    // Composed: if true, the event may leave the shadow DOM.
+    // Bubble: if event not handled by element, it will bubble to its parent
+    const cancelEvent = new Event("cancel", { bubbles: true, composed: true });
+    // event.target.dispatchEvent(cancelEvent);
+    this.dispatchEvent(cancelEvent);
   }
 
-  _confirm() {
+  _confirm(event) {
     this.hide();
+    const confirmEvent = new Event("confirm");
+    this.dispatchEvent(confirmEvent);
   }
 }
 
